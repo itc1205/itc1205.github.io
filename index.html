@@ -1,88 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Worst part of Heaven</title>
-    <link id="theme-stylesheet" rel="stylesheet" href="https://unpkg.com/xp.css"/>
-    <link rel="stylesheet" href="static/css/style.css">
-</head>
-<body>
-<button>Here is me, a little flying butterfly!</button>
-<input type="checkbox" id="example1">
-<label for="example1">And here is my shiny old checkbox</label>
-<div class="field-row">
-    <input id="radio5" type="radio" name="first-example">
-    <label for="radio5">And there is radio buttons!!!!</label>
-</div>
-<div class="field-row">
-    <input id="radio6" type="radio" name="first-example">
-    <label for="radio6">And another one!!!!!!!!!!!!!!!!!!</label>
-</div>
-<section class="tabs" style="max-width: 500px">
-    <menu role="tablist" aria-label="Sample Tabs">
-        <button role="tab" aria-selected="true" aria-controls="tab-A">Tab number oneee</button>
-        <button role="tab" aria-controls="tab-B">Tab number twooo</button>
-        <button role="tab" aria-controls="tab-C">Tab number C</button>
-    </menu>
-    <!-- the tab content -->
-    <article role="tabpanel" id="tab-A">
-        <h3>Tab Content</h3>
-        <p>
-            Some funny text here
-        </p>
-        <p>
-            Funnier shit
-        </p>
-    </article>
-    <article role="tabpanel" hidden id="tab-B">
-        <h3>dasdsadadasdasd</h3>
-        <p>dsa</p>
-        <fieldset>
-            <legend>mewooo</legend>
-            <div class="field-row">
-                <input id="radio10" type="radio" name="fieldset-example2">
-                <label for="radio10">das</label>
-            </div>
-            <div class="field-row">
-                <input id="radio11" type="radio" name="fieldset-example2">
-                <label for="radio11">das</label>
-            </div>
-            <div class="field-row">
-                <input id="radio12" type="radio" name="fieldset-example2">
-                <label for="radio12">Chris das</label>
-            </div>
-            <div class="field-row">
-                <input id="radio13" type="radio" name="fieldset-example2">
-                <label for="radio13">god kill me</label>
-            </div>
-        </fieldset>
-    </article>
-    <article role="tabpanel" hidden id="tab-C">
-        <h3>lmao</h3>
-        <p>go stupidkl fdsjahlfhjsdkjflshdjjflkj;sdjflisjlfjweofaje;lwfhjdslkfghjadsflkjgjfdsalkjdsflkgjsdafkl</p>
-    </article>
-</section>
-<div class="window">
-    <div class="title-bar">
-        <div class="title-bar-text">Command Prompt</div>
-        <div class="title-bar-controls">
-            <button aria-label="Minimize"></button>
-            <button aria-label="Maximize"></button>
-            <button aria-label="Close"></button>
-        </div>
+    <link rel="stylesheet" href="https://unpkg.com/xp.css" />
+    <link rel="stylesheet" href="static/css/style.css" />
+  </head>
+  <body>
+    <div class="window" id="drag-n-drop-window" style="width: 320px">
+      <div class="title-bar">
+        <div class="title-bar-text">Move me if you dare</div>
+      </div>
+      <div class="window-body">
+        <p>Go on</p>
+        <ul>
+          <li>funny</li>
+          <li>good</li>
+          <li>interface</li>
+        </ul>
+      </div>
+      <div class="status-bar">
+        <p class="status-bar-field">press anything</p>
+        <p id="status" class="status-bar-field">Not moving</p>
+        <p class="status-bar-field">CPU Usage: 14%</p>
+      </div>
     </div>
-    <div class="window-body">
-    <pre>Microsoft&#10094;R&#10095; Windows DOS
-&#10094;C&#10095; Copyright Microsoft Corp 1990-2001.
-      <br>C:&#92;WINDOWS&#92;SYSTEM32> hello_world.py
-    </pre>
-    </div>
-</div>
-<ul class="tree-view">
-    <li>hey</li>
-    <li><strong style="color: purple">✨ hi ✨</strong></li>
-    <li>.js is funny</li>
-</ul>
-<script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>

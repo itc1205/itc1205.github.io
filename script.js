@@ -1,36 +1,36 @@
-const tabs = document.querySelectorAll("menu[role=tablist]");
+let elem = document.getElementById("drag-n-drop-window");
+let status = document.getElementById("status");
 
-for (let i = 0; i < tabs.length; i++) {
-  const tab = tabs[i];
 
-  const tabButtons = tab.querySelectorAll("menu[role=tablist] > button");
+elem.onmousedown = function (event) {
+  let shiftX = event.clientX - elem.getBoundingClientRect().left;
+  let shifY = event.clientY - elem.getBoundingClientRect().top;
+  
+  status.innerText = "Moving"
 
-  tabButtons.forEach((btn) =>
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
+  elem.style.position = "absolute";
+  elem.style.zIndex = 1000;
 
-      tabButtons.forEach((button) => {
-        if (
-          button.getAttribute("aria-controls") ===
-          e.target.getAttribute("aria-controls")
-        ) {
-          button.setAttribute("aria-selected", true);
-          openTab(e, tab);
-        } else {
-          button.setAttribute("aria-selected", false);
-        }
-      });
-    })
-  );
-}
+  moveAt(event.pageX, event.pageY);
 
-function openTab(event, tab) {
-  const articles = tab.parentNode.querySelectorAll('[role="tabpanel"]');
-  articles.forEach((p) => {
-    p.setAttribute("hidden", true);
-  });
-  const article = tab.parentNode.querySelector(
-    `[role="tabpanel"]#${event.target.getAttribute("aria-controls")}`
-  );
-  article.removeAttribute("hidden");
-}
+  function moveAt(pageX, pageY) {
+    elem.style.left = pageX - shiftX + "px";
+    elem.style.top = pageY - shifY + "px";
+  }
+
+  function onMouseMove(event) {
+    moveAt(event.pageX, event.pageY);
+  }
+
+  document.addEventListener("mousemove", onMouseMove);
+
+  elem.onmouseup = function () {
+    document.removeEventListener("mousemove", onMouseMove);
+    elem.onmouseup = null;
+    status.innerText = "Not moving"
+  };
+};
+
+elem.ondragstart = function () {
+  return false;
+};
