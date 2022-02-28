@@ -1,36 +1,60 @@
 let elem = document.getElementById("drag-n-drop-window");
-let status = document.getElementById("status");
+let statusText = document.getElementById("status");
+let minimize = document.getElementById("minimize");
 
-
-elem.onmousedown = function (event) {
-  let shiftX = event.clientX - elem.getBoundingClientRect().left;
-  let shifY = event.clientY - elem.getBoundingClientRect().top;
-  
-  status.innerText = "Moving"
-
-  elem.style.position = "absolute";
-  elem.style.zIndex = 1000;
-
-  moveAt(event.pageX, event.pageY);
-
-  function moveAt(pageX, pageY) {
-    elem.style.left = pageX - shiftX + "px";
-    elem.style.top = pageY - shifY + "px";
+class Window {
+  constructor(element) {
+    this.element = element;
+    this.hidden = false;
+    this.titlebar = element.getElementsByClassName("title-bar")[0];
+    this.closebutton = element.getElementsByClassName("close")[0];
+    this.cpu_status = element.getElementsByClassName("CPU_usage")[0];
+    console.log(this.titlebar);
   }
-
-  function onMouseMove(event) {
-    moveAt(event.pageX, event.pageY);
-  }
-
-  document.addEventListener("mousemove", onMouseMove);
-
-  elem.onmouseup = function () {
-    document.removeEventListener("mousemove", onMouseMove);
-    elem.onmouseup = null;
-    status.innerText = "Not moving"
-  };
 };
 
-elem.ondragstart = function () {
+let statusWindow = new Window(elem);
+
+close.onmousedown = function () {
+  statusWindow.element.setAttribute('style', 'display: none;');
+  statusWindow.hidden = true;
+};
+
+statusWindow.titlebar.onmousedown = function (event) {
+  if (!statusWindow.hidden) {
+    let shiftX = event.clientX - statusWindow.element.getBoundingClientRect().left;
+    let shifY = event.clientY - statusWindow.element.getBoundingClientRect().top;
+    
+    statusText.innerText = "Moving"
+
+    statusWindow.element.style.position = "absolute";
+    statusWindow.element.style.zIndex = 1000;
+
+    moveAt(event.pageX, event.pageY);
+    
+
+    function moveAt(pageX, pageY) {
+      statusWindow.element.style.left = pageX - shiftX + "px";
+      statusWindow.element.style.top = pageY - shifY + "px";
+    }
+
+    function onMouseMove(event) {
+      moveAt(event.pageX, event.pageY);
+      statusWindow.cpu_status.innerText = `CPU Usage: ${Math.floor(Math.random() * 100)}%`
+    }
+
+    document.addEventListener("mousemove", onMouseMove);
+
+    statusWindow.titlebar.onmouseup = function () {
+      document.removeEventListener("mousemove", onMouseMove);
+      statusWindow.titlebar.onmouseup = null;
+      statusText.innerText = "Not moving"
+    };
+  } else {
+    document.removeEventListener("mousemove", onMouseMove);
+  }
+};
+
+statusWindow.titlebar.ondragstart = function () {
   return false;
 };
